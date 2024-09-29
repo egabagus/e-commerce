@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientProductController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,21 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
+
+Route::prefix('client')->group(function () {
+    Route::controller(ClientProductController::class)->group(function () {
+        Route::get('/shop', 'index');
+        Route::get('/shop/product/{code}', 'product');
+    });
+
+    Route::prefix('master')->group(function () {
+        Route::controller(ProductController::class)->group(function () {
+            Route::get('/product/data', 'data');
+            Route::get('/product/data/{kodebarang}', 'show');
+        });
+    });
+});
+
 
 // useless routes
 // Just to demo sidebar dropdown links active states.

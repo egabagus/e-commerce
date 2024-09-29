@@ -16,6 +16,24 @@ class ProductService
         return DataTables::of($data)->make(true);
     }
 
+    public static function show($kodebarang)
+    {
+        try {
+            $data = Product::where('kode_barang', $kodebarang)->first();
+            return response()->json([
+                'status' => 'success',
+                'data' => $data
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+
     public static function store($request)
     {
         DB::beginTransaction();
