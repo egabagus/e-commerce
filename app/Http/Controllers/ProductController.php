@@ -22,4 +22,19 @@ class ProductController extends Controller
     {
         return ProductService::store($request);
     }
+
+    public function update(ProductRequest $request, $id)
+    {
+        return ProductService::update($request, $id);
+    }
+
+    public function image(Request $request, $id)
+    {
+        return ProductService::image($request, $id);
+    }
+
+    public function destroy($id)
+    {
+        return ProductService::destroy($id);
+    }
 }

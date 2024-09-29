@@ -4,49 +4,59 @@
             <form method="POST" id="formAddProduct">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModalLabel">Tambah Data Barang</h5>
-                    <button type="button" class="btn-sm btn-light" data-dismiss="modal"><i
+                    <h3 class="text-xl" id="addProductModalLabel">Tambah Data Barang</h3>
+                    <button type="button" class="btn-sm btn-light" data-bs-dismiss="modal"><i
                             class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
 
                     <div class="mb-3 row">
-                        <label for="" class="col-md-3">Kode Barang</label>
-                        <input type="text" name="kode_barang" class="form-control col-md-9" readonly
-                            value="Otomatis" />
+                        <label for="" class="col-3 form-label">Kode Barang</label>
+                        <div class="col-9">
+                            <x-form.input type="text" class="block w-full" autofocus autocomplete="name" disabled
+                                placeholder="Otomatis" />
+                        </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-md-3">Nama Barang</label>
-                        <input type="text" name="nama_barang" class="form-control col-md-9" />
+                        <label for="" class="col-3">Nama Barang</label>
+                        <div class="col-9">
+                            <x-form.input name="nama_barang" type="text" class="block w-full" autofocus
+                                autocomplete="name" />
+                        </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-md-3">Harga</label>
-                        <input type="number" name="harga" class="form-control col-md-9" />
+                        <label for="" class="col-3">Harga</label>
+                        <div class="col-9">
+                            <x-form.input name="harga" type="number" class="block w-full" autofocus
+                                autocomplete="name" />
+                        </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-md-3">Kategori</label>
-                        <select name="kategori" class="form-control" id="kategoriSelect" style="width:75%">
-                        </select>
+                        <label for="" class="col-3">Stok</label>
+                        <div class="col-9">
+                            <x-form.input name="stok" type="number" class="block w-full" autofocus
+                                autocomplete="name" />
+                        </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-md-3">Satuan</label>
-                        <input type="text" name="satuan" class="form-control col-md-9" />
+                        <label for="" class="col-3">Deksripsi</label>
+                        <div class="col-9">
+                            <x-form.textarea name="deskripsi" type="number" class="block w-full" autofocus
+                                autocomplete="name" />
+                        </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-md-3">Deksripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" rows="4" class="form-control col-md-9" name="deskripsi"></textarea>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="" class="col-md-3">Status</label>
-                        <select name="status" class="form-control" id="status" style="width:75%">
-                            <option value="1">Aktif</option>
-                            <option value="0">Non Aktif</option>
-                        </select>
+                        <label for="" class="col-3">Status</label>
+                        <div class="col-9">
+                            <x-form.select name="status" :disabled="false" :withicon="true"
+                                :options="['1' => 'Aktif', '0' => 'Nonaktif']"></x-form.select>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="save()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn bg-sky-800 text-white hover:bg-sky-900" onclick="save()">Save
+                        changes</button>
                 </div>
             </form>
         </div>
@@ -54,9 +64,8 @@
 </div>
 
 <script>
-    function addBarang() {
-        initCategory()
-        $('#addBarangModal').modal('show')
+    function addProduct() {
+        $('#addProductModal').modal('show')
     }
 
     function save() {
@@ -64,8 +73,9 @@
         var formData = new FormData(form)
 
         $.ajax({
-            url: `{{ url('master/barang/data') }}`,
+            url: `{{ url('master/product/data') }}`,
             data: formData,
+            method: 'POST',
             processData: false,
             contentType: false,
             beforeSend: function() {

@@ -9,6 +9,7 @@
     <title>{{ config('app.name', 'K UI') }}</title>
 
     <!-- Fonts -->
+    <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet" />
@@ -19,12 +20,11 @@
             display: none;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css">
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    <link href="{{ asset('assets/sweetallert/sweetalert2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/datatables5/dataTables.bootstrap5.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/select2/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/select2/select2-bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -64,6 +64,19 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('assets/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('assets/sweetallert/sweetalert2.all.min.js') }}"></script>
+
+    <script src="{{ asset('assets/datatables5/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables5/dataTables.js') }}"></script>
+    <script src="{{ asset('assets/datatables5/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
 </body>
 @include('utils.master')
 @include('utils.loading')

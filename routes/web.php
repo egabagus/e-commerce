@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
         Route::controller(ProductController::class)->group(function () {
             Route::get('/product', 'index');
             Route::get('/product/data', 'data');
+            Route::post('/product/data', 'store');
+            Route::post('/product/data/{id}', 'update');
+            Route::post('/product/data/delete/{id}', 'destroy');
+            Route::post('/product/data/image/{id}', 'image');
         });
     });
 });
