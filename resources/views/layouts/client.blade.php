@@ -52,10 +52,26 @@
                 <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
             </ul>
 
-            <div class="col-md-3 text-end">
+            @if (Route::has('login'))
+                <div class="col-md-3 text-end">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="btn bg-sky-800 text-white hover:bg-sky-900">Daftar
+                            Transaksi</a>
+                    @else
+                        <a href="{{ route('login') }}" class="bg-transparent btn hover:bg-sky-900">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="btn bg-sky-800 text-white hover:bg-sky-900">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+
+            {{-- <div class="col-md-3 text-end">
                 <button type="button" class="btn btn-outline-primary me-2">Login</button>
                 <button type="button" class="btn btn-primary">Sign-up</button>
-            </div>
+            </div> --}}
         </header>
     </div>
 
@@ -76,6 +92,8 @@
     <script src="{{ asset('assets/datatables5/dataTables.js') }}"></script>
     <script src="{{ asset('assets/datatables5/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 </body>
 @include('utils.master')
 @include('utils.loading')
