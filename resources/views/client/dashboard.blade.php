@@ -75,16 +75,35 @@
             // Optional
             onSuccess: function(result) {
                 paymentSuccess(id)
+                Swal.fire({
+                    title: "Berhasil!",
+                    type: "success",
+                    icon: "success",
+                }).then(function() {
+                    location.reload()
+                })
             },
             // Optional
             onPending: function(result) {
-                /* You may add your own js here, this is just example */
-                document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                Swal.fire({
+                    title: "Order Pending",
+                    type: "warning",
+                    icon: "warning",
+                    html: result
+                }).then(function() {
+                    location.reload()
+                })
             },
             // Optional
             onError: function(result) {
-                /* You may add your own js here, this is just example */
-                document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                Swal.fire({
+                    title: "Order Pending",
+                    type: "warning",
+                    icon: "warning",
+                    html: result
+                }).then(function() {
+                    location.reload()
+                })
             }
         });
     }

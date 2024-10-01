@@ -48,44 +48,45 @@
     function upload() {
         var form = document.getElementById('formimage')
         var formData = new FormData(form)
-        var id = $('#idBarang').val();
-        console.log(formData)
+        var id = $('#idBarangImage').val();
         Swal.fire({
             title: "Yakin untuk mengubah upload foto produk?",
             showCancelButton: true,
             confirmButtonText: "Yes",
             icon: "question"
-        }).then(function() {
-            $.ajax({
-                url: `{{ url('master/product/data/image') }}/${id}`,
-                data: formData,
-                method: 'POST',
-                // headers: {
-                //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                // },
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    showLoading();
-                },
-                success: (data) => {
-                    Swal.fire({
-                        title: "Berhasil!",
-                        type: "success",
-                        icon: "success",
-                    }).then(function() {
-                        productTable.ajax.reload()
-                        $('#imageModal').modal('hide')
-                    })
-                },
-                error: function(error) {
-                    hideLoading();
-                    handleErrorAjax(error)
-                },
-                complete: function() {
-                    hideLoading();
-                },
-            })
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `{{ env('APP_URL') }}/master/product/data/image/${id}`,
+                    data: formData,
+                    method: 'POST',
+                    // headers: {
+                    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    // },
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        showLoading();
+                    },
+                    success: (data) => {
+                        Swal.fire({
+                            title: "Berhasil!",
+                            type: "success",
+                            icon: "success",
+                        }).then(function() {
+                            productTable.ajax.reload()
+                            $('#imageModal').modal('hide')
+                        })
+                    },
+                    error: function(error) {
+                        hideLoading();
+                        handleErrorAjax(error)
+                    },
+                    complete: function() {
+                        hideLoading();
+                    },
+                })
+            }
         });
     }
 </script>

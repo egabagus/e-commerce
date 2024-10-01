@@ -13,7 +13,7 @@
 
     function showProduct() {
         $.ajax({
-            url: `{{ url('client/master/product/data') }}`,
+            url: `{{ url('client/master/product/data/user') }}`,
             processData: false,
             contentType: false,
             beforeSend: function() {

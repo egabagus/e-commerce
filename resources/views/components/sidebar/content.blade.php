@@ -8,22 +8,18 @@
 
     <x-sidebar.dropdown title="Master" :active="Str::startsWith(request()->route()->uri(), 'master')">
         <x-slot name="icon">
-            <x-heroicon-o-view-grid class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <i class="fas fa-shopping-bag"></i>
         </x-slot>
 
         <x-sidebar.sublink title="Product" href="{{ url('master/product') }}" :active="request()->url('master/product')" />
     </x-sidebar.dropdown>
 
-    <div x-transition x-show="isSidebarOpen || isSidebarHovered" class="text-sm text-gray-500">
-        Dummy Links
-    </div>
+    <x-sidebar.dropdown title="Shop" :active="Str::startsWith(request()->route()->uri(), 'shop')">
+        <x-slot name="icon">
+            <i class="fas fa-store-alt"></i>
+        </x-slot>
 
-    @php
-        $links = array_fill(0, 20, '');
-    @endphp
-
-    @foreach ($links as $index => $link)
-        <x-sidebar.link title="Dummy link {{ $index + 1 }}" href="#" />
-    @endforeach
+        <x-sidebar.sublink title="Order" href="{{ url('shop/order') }}" :active="request()->url('shop/order')" />
+    </x-sidebar.dropdown>
 
 </x-perfect-scrollbar>

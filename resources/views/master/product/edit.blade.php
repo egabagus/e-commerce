@@ -88,37 +88,39 @@
             showCancelButton: true,
             confirmButtonText: "Yes",
             icon: "question"
-        }).then(function() {
-            $.ajax({
-                url: `{{ url('master/product/data') }}/${id}`,
-                data: formData,
-                method: 'POST',
-                // headers: {
-                //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                // },
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    showLoading();
-                },
-                success: (data) => {
-                    Swal.fire({
-                        title: "Berhasil!",
-                        type: "success",
-                        icon: "success",
-                    }).then(function() {
-                        productTable.ajax.reload()
-                        $('#editProductModal').modal('hide')
-                    })
-                },
-                error: function(error) {
-                    hideLoading();
-                    handleErrorAjax(error)
-                },
-                complete: function() {
-                    hideLoading();
-                },
-            })
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `{{ url('master/product/data') }}/${id}`,
+                    data: formData,
+                    method: 'POST',
+                    // headers: {
+                    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    // },
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        showLoading();
+                    },
+                    success: (data) => {
+                        Swal.fire({
+                            title: "Berhasil!",
+                            type: "success",
+                            icon: "success",
+                        }).then(function() {
+                            productTable.ajax.reload()
+                            $('#editProductModal').modal('hide')
+                        })
+                    },
+                    error: function(error) {
+                        hideLoading();
+                        handleErrorAjax(error)
+                    },
+                    complete: function() {
+                        hideLoading();
+                    },
+                })
+            }
         });
     }
 </script>

@@ -18,8 +18,8 @@ use App\Http\Controllers\TransactionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('client.shop.index');
+})->name('shop');
 
 
 Route::middleware('auth')->group(function () {
@@ -39,6 +39,13 @@ Route::middleware('auth')->group(function () {
                 Route::post('/product/data/{id}', 'update');
                 Route::post('/product/data/delete/{id}', 'destroy');
                 Route::post('/product/data/image/{id}', 'image');
+            });
+        });
+
+        Route::prefix('shop')->group(function () {
+            Route::controller(TransactionController::class)->group(function () {
+                Route::get('/order', 'indexadmin');
+                Route::get('/order/data', 'data');
             });
         });
     });
@@ -73,7 +80,7 @@ Route::prefix('client')->group(function () {
 
     Route::prefix('master')->group(function () {
         Route::controller(ProductController::class)->group(function () {
-            Route::get('/product/data', 'data');
+            Route::get('/product/data/user', 'shopdata');
             Route::get('/product/data/{kodebarang}', 'show');
         });
     });

@@ -77,6 +77,8 @@
     <script src="{{ asset('assets/datatables5/dataTables.js') }}"></script>
     <script src="{{ asset('assets/datatables5/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/font-awesome/js/all.min.js') }}"></script>
+    <script src="{{ asset('assets/moment/moment.min.js') }}"></script>
 </body>
 @include('utils.master')
 @include('utils.loading')

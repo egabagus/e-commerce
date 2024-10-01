@@ -130,4 +130,18 @@ class TransactionService
             ], 500);
         }
     }
+
+    public static function data()
+    {
+        try {
+            $data = Transaction::with('user', 'product')->get();
+            return Datatables::of($data)->make(true);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

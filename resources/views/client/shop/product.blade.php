@@ -23,29 +23,11 @@
             <p class="text-md mt-2" id="productDesc"></p>
 
             <p class="mt-3"><b>STOK: </b><span id="stockProduct"></span></p>
-            <div class="col-2 mt-3">
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus"
-                            data-field="">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity" class="form-control input-number"
-                        value="1" min="1" max="100">
-                    {{-- <x-form.input name="quantity" id="quantity" type="text" class="form-control input-number"
-                        value="1" min="1" max="100" /> --}}
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus"
-                            data-field="">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
+            <p class="mt-2 text-red-600" id="warningStok"></p>
 
             <div class="d-grid mt-4">
-                <button type="button" class="mt-4 btn btn-lg bg-sky-800 text-white hover:bg-sky-900"
+                <button type="button"
+                    class="mt-4 btn btn-lg bg-sky-800 text-white hover:bg-sky-900 disabled:bg-sky-600 disabled:opacity-50"
                     id="btnCheckout">CHECKOUT</button>
             </div>
 
@@ -149,6 +131,11 @@
                 $('#productDesc').text(val.deskripsi)
                 $('#stockProduct').text(val.stok)
 
+                if (val.stok < 1) {
+                    $('#btnCheckout').prop('disabled', true)
+                    $('#warningStok').text('Stok Habis')
+                }
+
                 $('#btnCheckout').click(function() {
                     checkout(val);
                 });
@@ -223,6 +210,9 @@
             processData: false,
             contentType: false,
             data: formData,
+            beforeSend: function() {
+                showLoading();
+            },
             success: function(data) {
                 Swal.fire({
                     title: "Berhasil!",

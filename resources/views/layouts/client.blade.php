@@ -45,17 +45,13 @@
             </a>
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+                <li><a href="{{ route('shop') }}" class="nav-link px-2 link-secondary">Home</a></li>
             </ul>
 
             @if (Route::has('login'))
                 <div class="col-md-3 text-end">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="btn bg-sky-800 text-white hover:bg-sky-900">Daftar
+                        <a href="{{ route('transaction-list') }}" class="btn bg-sky-800 text-white hover:bg-sky-900">Daftar
                             Transaksi</a>
                     @else
                         <a href="{{ route('login') }}" class="bg-transparent btn hover:bg-sky-900">Log in</a>

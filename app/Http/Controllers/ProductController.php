@@ -18,6 +18,11 @@ class ProductController extends Controller
         return ProductService::data();
     }
 
+    public function shopdata()
+    {
+        return ProductService::shopdata();
+    }
+
     public function show($kodebarang)
     {
         return ProductService::show($kodebarang);
