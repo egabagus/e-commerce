@@ -51,6 +51,12 @@
             @if (Route::has('login'))
                 <div class="col-md-3 text-end">
                     @auth
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <a href="{{ route('logout') }}" class="bg-transparent btn hover:bg-sky-900"
+                                onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                        </form>
                         <a href="{{ route('transaction-list') }}" class="btn bg-sky-800 text-white hover:bg-sky-900">Daftar
                             Transaksi</a>
                     @else

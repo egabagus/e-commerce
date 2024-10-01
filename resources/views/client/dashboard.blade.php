@@ -45,7 +45,7 @@
                             <tr class="text-lg">
                                 <td class="px-6 py-3">${item.no_order}</td>
                                 <td class="px-6 py-3">${item.kode_barang}</td>
-                                <td class="px-6 py-3">${item.amount}</td>
+                                <td class="px-6 py-3">${formatRupiah(item.amount, 'Rp.')}</td>
                                 <td class="px-6 py-3">
                                     ${item.status === 'pending' ? '<span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-lg font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">PENDING</span>'
                                      : '<span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-lg font-medium text-green-700 ring-1 ring-inset ring-green-600/20">SUCCESS</span>'}
